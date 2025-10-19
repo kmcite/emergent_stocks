@@ -1,0 +1,29 @@
+name: emergent_stocks
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  build_runner: ^2.7.1
+  flutter:
+    sdk: flutter
+  navigation_builder: ^0.0.4
+  objectbox: ^5.0.0
+  objectbox_flutter_libs: ^5.0.0
+  objectbox_generator: ^5.0.0
+  package_info_plus: ^9.0.0
+  path: ^1.9.1
+  path_provider: ^2.1.5
+  spark:
+    path: C://Users//Adn//CascadeProjects//spark
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
