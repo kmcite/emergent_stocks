@@ -14,9 +14,8 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'domain/model/brand.dart';
-import 'domain/model/emergent_stock.dart';
-import 'domain/model/generic_name.dart';
+import 'domain/emergent_stock.dart';
+import 'domain/generic_name.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -46,12 +45,6 @@ final _entities = <obx_int.ModelEntity>[
         flags: 0,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(4, 241676766436747577),
-        name: 'brandName',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
         id: const obx_int.IdUid(5, 9057342834848722817),
         name: 'genericName',
         type: 9,
@@ -60,28 +53,6 @@ final _entities = <obx_int.ModelEntity>[
       obx_int.ModelProperty(
         id: const obx_int.IdUid(6, 2203949605880516998),
         name: 'strength',
-        type: 9,
-        flags: 0,
-      ),
-    ],
-    relations: <obx_int.ModelRelation>[],
-    backlinks: <obx_int.ModelBacklink>[],
-  ),
-  obx_int.ModelEntity(
-    id: const obx_int.IdUid(3, 2387716134325941887),
-    name: 'Brand',
-    lastPropertyId: const obx_int.IdUid(2, 7644121803486665283),
-    flags: 0,
-    properties: <obx_int.ModelProperty>[
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(1, 8504567886132177154),
-        name: 'id',
-        type: 6,
-        flags: 1,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(2, 7644121803486665283),
-        name: 'name',
         type: 9,
         flags: 0,
       ),
@@ -150,17 +121,25 @@ Future<obx.Store> openStore({
 /// [obx.Store.new].
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
+    // If this version is not found, it means that this file was generated
+    // with an older version of the ObjectBox Dart generator.
+    // Please regenerate this file with the current generator version.
+    // Typically, this is done with `dart run build_runner build`.
+    generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
     lastEntityId: const obx_int.IdUid(4, 1250713792628638593),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
-    retiredEntityUids: const [3014334432606656959],
+    retiredEntityUids: const [3014334432606656959, 2387716134325941887],
     retiredIndexUids: const [],
     retiredPropertyUids: const [
       6185507381703655025,
       1240324940888893529,
       7515357026937317766,
+      241676766436747577,
+      8504567886132177154,
+      7644121803486665283,
     ],
     retiredRelationUids: const [],
     modelVersion: 5,
@@ -179,14 +158,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
       },
       objectToFB: (EmergentStock object, fb.Builder fbb) {
         final nameOffset = fbb.writeString(object.name);
-        final brandNameOffset = fbb.writeString(object.brandName);
         final genericNameOffset = fbb.writeString(object.genericName);
         final strengthOffset = fbb.writeString(object.strength);
         fbb.startTable(7);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, nameOffset);
         fbb.addInt64(2, object.count);
-        fbb.addOffset(3, brandNameOffset);
         fbb.addOffset(4, genericNameOffset);
         fbb.addOffset(5, strengthOffset);
         fbb.finish(fbb.endTable());
@@ -202,9 +179,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
             asciiOptimization: true,
           ).vTableGet(buffer, rootOffset, 6, '')
           ..count = const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0)
-          ..brandName = const fb.StringReader(
-            asciiOptimization: true,
-          ).vTableGet(buffer, rootOffset, 10, '')
           ..genericName = const fb.StringReader(
             asciiOptimization: true,
           ).vTableGet(buffer, rootOffset, 12, '')
@@ -215,37 +189,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
-    Brand: obx_int.EntityDefinition<Brand>(
-      model: _entities[1],
-      toOneRelations: (Brand object) => [],
-      toManyRelations: (Brand object) => {},
-      getId: (Brand object) => object.id,
-      setId: (Brand object, int id) {
-        object.id = id;
-      },
-      objectToFB: (Brand object, fb.Builder fbb) {
-        final nameOffset = fbb.writeString(object.name);
-        fbb.startTable(3);
-        fbb.addInt64(0, object.id);
-        fbb.addOffset(1, nameOffset);
-        fbb.finish(fbb.endTable());
-        return object.id;
-      },
-      objectFromFB: (obx.Store store, ByteData fbData) {
-        final buffer = fb.BufferContext(fbData);
-        final rootOffset = buffer.derefObject(0);
-
-        final object = Brand()
-          ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-          ..name = const fb.StringReader(
-            asciiOptimization: true,
-          ).vTableGet(buffer, rootOffset, 6, '');
-
-        return object;
-      },
-    ),
     GenericName: obx_int.EntityDefinition<GenericName>(
-      model: _entities[2],
+      model: _entities[1],
       toOneRelations: (GenericName object) => [],
       toManyRelations: (GenericName object) => {},
       getId: (GenericName object) => object.id,
@@ -295,30 +240,14 @@ class EmergentStock_ {
     _entities[0].properties[2],
   );
 
-  /// See [EmergentStock.brandName].
-  static final brandName = obx.QueryStringProperty<EmergentStock>(
-    _entities[0].properties[3],
-  );
-
   /// See [EmergentStock.genericName].
   static final genericName = obx.QueryStringProperty<EmergentStock>(
-    _entities[0].properties[4],
+    _entities[0].properties[3],
   );
 
   /// See [EmergentStock.strength].
   static final strength = obx.QueryStringProperty<EmergentStock>(
-    _entities[0].properties[5],
-  );
-}
-
-/// [Brand] entity fields to define ObjectBox queries.
-class Brand_ {
-  /// See [Brand.id].
-  static final id = obx.QueryIntegerProperty<Brand>(_entities[1].properties[0]);
-
-  /// See [Brand.name].
-  static final name = obx.QueryStringProperty<Brand>(
-    _entities[1].properties[1],
+    _entities[0].properties[4],
   );
 }
 
@@ -326,11 +255,11 @@ class Brand_ {
 class GenericName_ {
   /// See [GenericName.id].
   static final id = obx.QueryIntegerProperty<GenericName>(
-    _entities[2].properties[0],
+    _entities[1].properties[0],
   );
 
   /// See [GenericName.name].
   static final name = obx.QueryStringProperty<GenericName>(
-    _entities[2].properties[1],
+    _entities[1].properties[1],
   );
 }

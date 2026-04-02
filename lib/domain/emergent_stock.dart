@@ -1,8 +1,11 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class Brand {
+class EmergentStock {
   @Id()
   int id = 0;
   String name = '';
+  int count = 0;
+  String genericName = '';
+  String strength = '';
 }
