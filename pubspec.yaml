@@ -1,31 +1,64 @@
 name: emergent_stocks
-description: "A new Flutter project."
+description: "Medicine bag — inventory, expiry, and dispensing."
 publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.13.0
 
 dependencies:
-  build_runner: ^2.7.1
   flutter:
     sdk: flutter
   objectbox: ^5.2.0
   objectbox_flutter_libs: ^5.2.0
-  objectbox_generator: ^5.2.0
-  package_info_plus: ^9.0.0
   path: ^1.9.1
-  signals: ^6.3.0
   path_provider: ^2.1.5
   shared_preferences: ^2.3.3
-  forui: ^0.19.0
-  manager:
-    path: ..//manager
+  http: ^1.2.2
+  navigation: 
+    path:
+      ..//navigation
+
 
 dev_dependencies:
+  objectbox_generator: ^5.2.0
+  build_runner: ^2.7.1
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
 
+flutter_launcher_icons:
+  image_path: assets/branding/app_icon.png
+  adaptive_icon_background: "#141A33"
+  adaptive_icon_foreground: assets/branding/app_icon.png
+  android: true
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: assets/branding/app_icon.png
+    background_color: "#141A33"
+    theme_color: "#64D2FF"
+  windows:
+    generate: true
+    image_path: assets/branding/app_icon.png
+    icon_size: 256
+
+flutter_native_splash:
+  color: "#141A33"
+  color_dark: "#141A33"
+  image: assets/branding/splash_icon.png
+  image_dark: assets/branding/splash_icon.png
+  android_12:
+    color: "#141A33"
+    image: assets/branding/splash_icon.png
+    icon_background_color: "#141A33"
+  web: true
+  android: true
+  ios: false
+
 flutter:
   uses-material-design: true
+  assets:
+    - assets/branding/

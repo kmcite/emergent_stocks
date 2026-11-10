@@ -14,8 +14,9 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'domain/emergent_stock.dart';
-import 'domain/generic_name.dart';
+import 'models/dispense_record.dart';
+import 'models/emergent_stock.dart';
+import 'models/sync_outbox_entry.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -23,7 +24,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(2, 719655758472596716),
     name: 'EmergentStock',
-    lastPropertyId: const obx_int.IdUid(6, 2203949605880516998),
+    lastPropertyId: const obx_int.IdUid(11, 2154659467783288654),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -56,26 +57,132 @@ final _entities = <obx_int.ModelEntity>[
         type: 9,
         flags: 0,
       ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 4551339175864906681),
+        name: 'remoteId',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 2638381256451618549),
+        name: 'updatedAtMs',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(9, 8343609701764730004),
+        name: 'expiryDateMs',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(10, 7619487967848762403),
+        name: 'forEmergency',
+        type: 1,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(11, 2154659467783288654),
+        name: 'notes',
+        type: 9,
+        flags: 0,
+      ),
     ],
     relations: <obx_int.ModelRelation>[],
     backlinks: <obx_int.ModelBacklink>[],
   ),
   obx_int.ModelEntity(
-    id: const obx_int.IdUid(4, 1250713792628638593),
-    name: 'GenericName',
-    lastPropertyId: const obx_int.IdUid(2, 3565549724810644893),
+    id: const obx_int.IdUid(5, 5710605639385908398),
+    name: 'SyncOutboxEntry',
+    lastPropertyId: const obx_int.IdUid(5, 8820566347320566464),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(1, 5762215920622495187),
+        id: const obx_int.IdUid(1, 591867392219323009),
         name: 'id',
         type: 6,
         flags: 1,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(2, 3565549724810644893),
-        name: 'name',
+        id: const obx_int.IdUid(2, 499701841452536579),
+        name: 'localStockId',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 7521046619837601699),
+        name: 'remoteId',
         type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 8565983003130854091),
+        name: 'operation',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 8820566347320566464),
+        name: 'enqueuedAtMs',
+        type: 6,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(6, 8570232338119109982),
+    name: 'DispenseRecord',
+    lastPropertyId: const obx_int.IdUid(8, 5632750529652963164),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 6847787385681335982),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 7550044468076209395),
+        name: 'stockId',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 6949287592107139366),
+        name: 'medicineName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 6534560595838679761),
+        name: 'strength',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 9050233649753952789),
+        name: 'patientName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 821867143682497007),
+        name: 'quantity',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 6190751283566465260),
+        name: 'notes',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 5632750529652963164),
+        name: 'dispensedAtMs',
+        type: 6,
         flags: 0,
       ),
     ],
@@ -127,11 +234,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(4, 1250713792628638593),
+    lastEntityId: const obx_int.IdUid(6, 8570232338119109982),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
-    retiredEntityUids: const [3014334432606656959, 2387716134325941887],
+    retiredEntityUids: const [
+      3014334432606656959,
+      2387716134325941887,
+      1250713792628638593,
+    ],
     retiredIndexUids: const [],
     retiredPropertyUids: const [
       6185507381703655025,
@@ -140,6 +251,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
       241676766436747577,
       8504567886132177154,
       7644121803486665283,
+      5762215920622495187,
+      3565549724810644893,
     ],
     retiredRelationUids: const [],
     modelVersion: 5,
@@ -160,12 +273,19 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final nameOffset = fbb.writeString(object.name);
         final genericNameOffset = fbb.writeString(object.genericName);
         final strengthOffset = fbb.writeString(object.strength);
-        fbb.startTable(7);
+        final remoteIdOffset = fbb.writeString(object.remoteId);
+        final notesOffset = fbb.writeString(object.notes);
+        fbb.startTable(12);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, nameOffset);
         fbb.addInt64(2, object.count);
         fbb.addOffset(4, genericNameOffset);
         fbb.addOffset(5, strengthOffset);
+        fbb.addOffset(6, remoteIdOffset);
+        fbb.addInt64(7, object.updatedAtMs);
+        fbb.addInt64(8, object.expiryDateMs);
+        fbb.addBool(9, object.forEmergency);
+        fbb.addOffset(10, notesOffset);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -184,24 +304,52 @@ obx_int.ModelDefinition getObjectBoxModel() {
           ).vTableGet(buffer, rootOffset, 12, '')
           ..strength = const fb.StringReader(
             asciiOptimization: true,
-          ).vTableGet(buffer, rootOffset, 14, '');
+          ).vTableGet(buffer, rootOffset, 14, '')
+          ..remoteId = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 16, '')
+          ..updatedAtMs = const fb.Int64Reader().vTableGet(
+            buffer,
+            rootOffset,
+            18,
+            0,
+          )
+          ..expiryDateMs = const fb.Int64Reader().vTableGet(
+            buffer,
+            rootOffset,
+            20,
+            0,
+          )
+          ..forEmergency = const fb.BoolReader().vTableGet(
+            buffer,
+            rootOffset,
+            22,
+            false,
+          )
+          ..notes = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 24, '');
 
         return object;
       },
     ),
-    GenericName: obx_int.EntityDefinition<GenericName>(
+    SyncOutboxEntry: obx_int.EntityDefinition<SyncOutboxEntry>(
       model: _entities[1],
-      toOneRelations: (GenericName object) => [],
-      toManyRelations: (GenericName object) => {},
-      getId: (GenericName object) => object.id,
-      setId: (GenericName object, int id) {
+      toOneRelations: (SyncOutboxEntry object) => [],
+      toManyRelations: (SyncOutboxEntry object) => {},
+      getId: (SyncOutboxEntry object) => object.id,
+      setId: (SyncOutboxEntry object, int id) {
         object.id = id;
       },
-      objectToFB: (GenericName object, fb.Builder fbb) {
-        final nameOffset = fbb.writeString(object.name);
-        fbb.startTable(3);
+      objectToFB: (SyncOutboxEntry object, fb.Builder fbb) {
+        final remoteIdOffset = fbb.writeString(object.remoteId);
+        final operationOffset = fbb.writeString(object.operation);
+        fbb.startTable(6);
         fbb.addInt64(0, object.id);
-        fbb.addOffset(1, nameOffset);
+        fbb.addInt64(1, object.localStockId);
+        fbb.addOffset(2, remoteIdOffset);
+        fbb.addOffset(3, operationOffset);
+        fbb.addInt64(4, object.enqueuedAtMs);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -209,11 +357,86 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final buffer = fb.BufferContext(fbData);
         final rootOffset = buffer.derefObject(0);
 
-        final object = GenericName()
+        final object = SyncOutboxEntry()
           ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-          ..name = const fb.StringReader(
+          ..localStockId = const fb.Int64Reader().vTableGet(
+            buffer,
+            rootOffset,
+            6,
+            0,
+          )
+          ..remoteId = const fb.StringReader(
             asciiOptimization: true,
-          ).vTableGet(buffer, rootOffset, 6, '');
+          ).vTableGet(buffer, rootOffset, 8, '')
+          ..operation = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 10, '')
+          ..enqueuedAtMs = const fb.Int64Reader().vTableGet(
+            buffer,
+            rootOffset,
+            12,
+            0,
+          );
+
+        return object;
+      },
+    ),
+    DispenseRecord: obx_int.EntityDefinition<DispenseRecord>(
+      model: _entities[2],
+      toOneRelations: (DispenseRecord object) => [],
+      toManyRelations: (DispenseRecord object) => {},
+      getId: (DispenseRecord object) => object.id,
+      setId: (DispenseRecord object, int id) {
+        object.id = id;
+      },
+      objectToFB: (DispenseRecord object, fb.Builder fbb) {
+        final medicineNameOffset = fbb.writeString(object.medicineName);
+        final strengthOffset = fbb.writeString(object.strength);
+        final patientNameOffset = fbb.writeString(object.patientName);
+        final notesOffset = fbb.writeString(object.notes);
+        fbb.startTable(9);
+        fbb.addInt64(0, object.id);
+        fbb.addInt64(1, object.stockId);
+        fbb.addOffset(2, medicineNameOffset);
+        fbb.addOffset(3, strengthOffset);
+        fbb.addOffset(4, patientNameOffset);
+        fbb.addInt64(5, object.quantity);
+        fbb.addOffset(6, notesOffset);
+        fbb.addInt64(7, object.dispensedAtMs);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+
+        final object = DispenseRecord()
+          ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
+          ..stockId = const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0)
+          ..medicineName = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 8, '')
+          ..strength = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 10, '')
+          ..patientName = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 12, '')
+          ..quantity = const fb.Int64Reader().vTableGet(
+            buffer,
+            rootOffset,
+            14,
+            0,
+          )
+          ..notes = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 16, '')
+          ..dispensedAtMs = const fb.Int64Reader().vTableGet(
+            buffer,
+            rootOffset,
+            18,
+            0,
+          );
 
         return object;
       },
@@ -249,17 +472,100 @@ class EmergentStock_ {
   static final strength = obx.QueryStringProperty<EmergentStock>(
     _entities[0].properties[4],
   );
+
+  /// See [EmergentStock.remoteId].
+  static final remoteId = obx.QueryStringProperty<EmergentStock>(
+    _entities[0].properties[5],
+  );
+
+  /// See [EmergentStock.updatedAtMs].
+  static final updatedAtMs = obx.QueryIntegerProperty<EmergentStock>(
+    _entities[0].properties[6],
+  );
+
+  /// See [EmergentStock.expiryDateMs].
+  static final expiryDateMs = obx.QueryIntegerProperty<EmergentStock>(
+    _entities[0].properties[7],
+  );
+
+  /// See [EmergentStock.forEmergency].
+  static final forEmergency = obx.QueryBooleanProperty<EmergentStock>(
+    _entities[0].properties[8],
+  );
+
+  /// See [EmergentStock.notes].
+  static final notes = obx.QueryStringProperty<EmergentStock>(
+    _entities[0].properties[9],
+  );
 }
 
-/// [GenericName] entity fields to define ObjectBox queries.
-class GenericName_ {
-  /// See [GenericName.id].
-  static final id = obx.QueryIntegerProperty<GenericName>(
+/// [SyncOutboxEntry] entity fields to define ObjectBox queries.
+class SyncOutboxEntry_ {
+  /// See [SyncOutboxEntry.id].
+  static final id = obx.QueryIntegerProperty<SyncOutboxEntry>(
     _entities[1].properties[0],
   );
 
-  /// See [GenericName.name].
-  static final name = obx.QueryStringProperty<GenericName>(
+  /// See [SyncOutboxEntry.localStockId].
+  static final localStockId = obx.QueryIntegerProperty<SyncOutboxEntry>(
     _entities[1].properties[1],
+  );
+
+  /// See [SyncOutboxEntry.remoteId].
+  static final remoteId = obx.QueryStringProperty<SyncOutboxEntry>(
+    _entities[1].properties[2],
+  );
+
+  /// See [SyncOutboxEntry.operation].
+  static final operation = obx.QueryStringProperty<SyncOutboxEntry>(
+    _entities[1].properties[3],
+  );
+
+  /// See [SyncOutboxEntry.enqueuedAtMs].
+  static final enqueuedAtMs = obx.QueryIntegerProperty<SyncOutboxEntry>(
+    _entities[1].properties[4],
+  );
+}
+
+/// [DispenseRecord] entity fields to define ObjectBox queries.
+class DispenseRecord_ {
+  /// See [DispenseRecord.id].
+  static final id = obx.QueryIntegerProperty<DispenseRecord>(
+    _entities[2].properties[0],
+  );
+
+  /// See [DispenseRecord.stockId].
+  static final stockId = obx.QueryIntegerProperty<DispenseRecord>(
+    _entities[2].properties[1],
+  );
+
+  /// See [DispenseRecord.medicineName].
+  static final medicineName = obx.QueryStringProperty<DispenseRecord>(
+    _entities[2].properties[2],
+  );
+
+  /// See [DispenseRecord.strength].
+  static final strength = obx.QueryStringProperty<DispenseRecord>(
+    _entities[2].properties[3],
+  );
+
+  /// See [DispenseRecord.patientName].
+  static final patientName = obx.QueryStringProperty<DispenseRecord>(
+    _entities[2].properties[4],
+  );
+
+  /// See [DispenseRecord.quantity].
+  static final quantity = obx.QueryIntegerProperty<DispenseRecord>(
+    _entities[2].properties[5],
+  );
+
+  /// See [DispenseRecord.notes].
+  static final notes = obx.QueryStringProperty<DispenseRecord>(
+    _entities[2].properties[6],
+  );
+
+  /// See [DispenseRecord.dispensedAtMs].
+  static final dispensedAtMs = obx.QueryIntegerProperty<DispenseRecord>(
+    _entities[2].properties[7],
   );
 }

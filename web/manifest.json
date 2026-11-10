@@ -1,11 +1,11 @@
 {
-    "name": "emergent_stocks",
-    "short_name": "emergent_stocks",
+    "name": "Medicine Bag",
+    "short_name": "Medicine Bag",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#141A33",
+    "theme_color": "#64D2FF",
+    "description": "Medicine bag inventory, expiry, and dispensing.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "dev.loner" "\0"
-            VALUE "FileDescription", "emergent_stocks" "\0"
+            VALUE "FileDescription", "Medicine Bag" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "emergent_stocks" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 dev.loner. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 dev.loner. All rights reserved." "\0"
             VALUE "OriginalFilename", "emergent_stocks.exe" "\0"
-            VALUE "ProductName", "emergent_stocks" "\0"
+            VALUE "ProductName", "Medicine Bag" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

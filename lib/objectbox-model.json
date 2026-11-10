@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "2:719655758472596716",
-      "lastPropertyId": "6:2203949605880516998",
+      "lastPropertyId": "11:2154659467783288654",
       "name": "EmergentStock",
       "properties": [
         {
@@ -33,31 +33,120 @@
           "id": "6:2203949605880516998",
           "name": "strength",
           "type": 9
+        },
+        {
+          "id": "7:4551339175864906681",
+          "name": "remoteId",
+          "type": 9
+        },
+        {
+          "id": "8:2638381256451618549",
+          "name": "updatedAtMs",
+          "type": 6
+        },
+        {
+          "id": "9:8343609701764730004",
+          "name": "expiryDateMs",
+          "type": 6
+        },
+        {
+          "id": "10:7619487967848762403",
+          "name": "forEmergency",
+          "type": 1
+        },
+        {
+          "id": "11:2154659467783288654",
+          "name": "notes",
+          "type": 9
         }
       ],
       "relations": []
     },
     {
-      "id": "4:1250713792628638593",
-      "lastPropertyId": "2:3565549724810644893",
-      "name": "GenericName",
+      "id": "5:5710605639385908398",
+      "lastPropertyId": "5:8820566347320566464",
+      "name": "SyncOutboxEntry",
       "properties": [
         {
-          "id": "1:5762215920622495187",
+          "id": "1:591867392219323009",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:3565549724810644893",
-          "name": "name",
+          "id": "2:499701841452536579",
+          "name": "localStockId",
+          "type": 6
+        },
+        {
+          "id": "3:7521046619837601699",
+          "name": "remoteId",
           "type": 9
+        },
+        {
+          "id": "4:8565983003130854091",
+          "name": "operation",
+          "type": 9
+        },
+        {
+          "id": "5:8820566347320566464",
+          "name": "enqueuedAtMs",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:8570232338119109982",
+      "lastPropertyId": "8:5632750529652963164",
+      "name": "DispenseRecord",
+      "properties": [
+        {
+          "id": "1:6847787385681335982",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7550044468076209395",
+          "name": "stockId",
+          "type": 6
+        },
+        {
+          "id": "3:6949287592107139366",
+          "name": "medicineName",
+          "type": 9
+        },
+        {
+          "id": "4:6534560595838679761",
+          "name": "strength",
+          "type": 9
+        },
+        {
+          "id": "5:9050233649753952789",
+          "name": "patientName",
+          "type": 9
+        },
+        {
+          "id": "6:821867143682497007",
+          "name": "quantity",
+          "type": 6
+        },
+        {
+          "id": "7:6190751283566465260",
+          "name": "notes",
+          "type": 9
+        },
+        {
+          "id": "8:5632750529652963164",
+          "name": "dispensedAtMs",
+          "type": 6
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "4:1250713792628638593",
+  "lastEntityId": "6:8570232338119109982",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
@@ -65,7 +154,8 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [
     3014334432606656959,
-    2387716134325941887
+    2387716134325941887,
+    1250713792628638593
   ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
@@ -74,7 +164,9 @@
     7515357026937317766,
     241676766436747577,
     8504567886132177154,
-    7644121803486665283
+    7644121803486665283,
+    5762215920622495187,
+    3565549724810644893
   ],
   "retiredRelationUids": [],
   "version": 1

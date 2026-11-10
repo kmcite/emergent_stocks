@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img">
+  <rect width="512" height="512" rx="112" fill="#141A33"/>
+  <!-- Duotone bag (primary) -->
+  <path fill="#64D2FF" d="M256 120c-52 0-94 38-98 88l-14 184c-2 26 20 48 46 48h132c26 0 48-22 46-48l-14-184c-4-50-46-88-98-88zm0 48c27 0 48 18 51 44l10 128H195l10-128c3-26 24-44 51-44z"/>
+  <!-- Accent cross (secondary) -->
+  <path fill="#FFFFFF" d="M236 232h40v48h48v40h-48v48h-40v-48h-48v-40h48z"/>
+</svg>

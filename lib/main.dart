@@ -1,34 +1,34 @@
-import 'package:emergent_stocks/effects/dark.dart';
-import 'package:emergent_stocks/effects/navigation.dart';
-import 'package:emergent_stocks/effects/database.dart';
-import 'package:emergent_stocks/features/stocks_dashboard/emergency_stocks.dart';
+import 'package:emergent_stocks/business/settings.dart';
+import 'package:emergent_stocks/sync/sync_coordinator.dart';
+import 'package:emergent_stocks/ui/theme/liquid_glass.dart';
+import 'package:emergent_stocks/utils/core.dart';
+import 'package:emergent_stocks/utils/navigation.dart';
+import 'package:emergent_stocks/utils/provider.dart';
 import 'package:flutter/material.dart';
 
-import 'main.dart';
-
-export 'package:emergent_stocks/ui.dart';
-export 'package:signals/signals.dart';
-
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SignalsObserver.instance = null;
-  runApp(Application());
+  runApp(
+    ProviderScope(
+      child: const Application(),
+    ),
+  );
 }
 
-class Application extends UI {
+class Application extends SignalConsumer {
   const Application({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    context(syncCoordinatorProvider);
+    final settings = context(settingsProvider);
+
+    return MaterialApp.router(
+      routerConfig: router(context),
       debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      themeMode: darkSignal() ? ThemeMode.dark : ThemeMode.light,
-      home: db.loading()
-          ? Center(child: CircularProgressIndicator())
-          : EmergencyStocks(),
+      theme: LiquidGlassTheme.theme(Brightness.light),
+      darkTheme: LiquidGlassTheme.theme(Brightness.dark),
+      themeMode: settings.themeMode(),
     );
   }
 }
